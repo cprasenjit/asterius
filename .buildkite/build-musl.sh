@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-mount -t tmpfs tmpfs /tmp
-
 echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk update --no-progress
 apk upgrade --no-progress
@@ -34,9 +32,9 @@ apk add --no-progress \
   xz \
   zlib-dev
 mkdir -p ~/.local/bin
-curl -L https://github.com/commercialhaskell/stack/releases/download/v2.3.0.1/stack-2.3.0.1-linux-x86_64-static-bin -o ~/.local/bin/stack
+curl -L https://github.com/commercialhaskell/stack/releases/download/v2.3.1/stack-2.3.1-linux-x86_64-bin -o ~/.local/bin/stack
 chmod u+x ~/.local/bin/stack
-~/.local/bin/stack --system-ghc --resolver nightly-2020-04-25 --no-terminal install \
+~/.local/bin/stack --system-ghc --resolver nightly-2020-05-01 --no-terminal install \
   alex \
   happy \
   hscolour

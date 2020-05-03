@@ -2,9 +2,7 @@
 
 set -euo pipefail
 
-mount -t tmpfs tmpfs /tmp
-
-echo 'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20200426T030336Z sid main contrib non-free' > /etc/apt/sources.list
+echo 'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20200503T025701Z sid main contrib non-free' > /etc/apt/sources.list
 apt update
 apt full-upgrade -y
 apt install -y \
@@ -23,9 +21,9 @@ apt install -y \
   xz-utils \
   zlib1g-dev
 mkdir -p ~/.local/bin
-curl -L https://github.com/commercialhaskell/stack/releases/download/v2.3.0.1/stack-2.3.0.1-linux-x86_64-bin -o ~/.local/bin/stack
+curl -L https://github.com/commercialhaskell/stack/releases/download/v2.3.1/stack-2.3.1-linux-x86_64-bin -o ~/.local/bin/stack
 chmod u+x ~/.local/bin/stack
-~/.local/bin/stack --resolver nightly-2020-04-25 --no-terminal install \
+~/.local/bin/stack --resolver nightly-2020-05-01 --no-terminal install \
   alex \
   happy \
   hscolour

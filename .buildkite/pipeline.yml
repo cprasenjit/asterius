@@ -11,7 +11,6 @@ steps:
           --env MAKEFLAGS=-j8 \
           --env XZ_OPT=-9eT8 \
           --network host \
-          --privileged \
           --rm \
           --volume $(pwd):/asterius \
           --workdir /asterius \
@@ -30,7 +29,6 @@ steps:
           --env MAKEFLAGS=-j8 \
           --env XZ_OPT=-9eT8 \
           --network host \
-          --privileged \
           --rm \
           --volume $(pwd):/asterius \
           --workdir /asterius \
@@ -48,7 +46,6 @@ steps:
           --env MAKEFLAGS=-j8 \
           --env XZ_OPT=-9eT8 \
           --network host \
-          --privileged \
           --rm \
           --volume $(pwd):/asterius \
           --workdir /asterius \
