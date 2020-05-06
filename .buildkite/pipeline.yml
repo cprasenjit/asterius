@@ -10,16 +10,7 @@ steps:
       rm -rf /tmp/asterius
 
       docker system prune --all --force
-      docker pull debian:sid
-      docker build \
-        --compress \
-        --file base.Dockerfile \
-        --label "gitrev=$(git rev-parse HEAD)" \
-        --network host \
-        --no-cache \
-        --squash \
-        --tag terrorjack/asterius:base \
-        .
+      docker pull terrorjack/asterius:base
       docker build \
         --build-arg jobs=8 \
         --compress \
