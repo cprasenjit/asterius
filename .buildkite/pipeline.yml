@@ -4,6 +4,7 @@ steps:
     label: "asterius-dev-image"
     command: |
       export ASTERIUS_TMPDIR=$(mktemp -d)
+      echo $ASTERIUS_TMPDIR
       mv --target $ASTERIUS_TMPDIR .buildkite/*
       git checkout -f master
       mv --target .buildkite $ASTERIUS_TMPDIR/*
