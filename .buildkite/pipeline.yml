@@ -4,9 +4,9 @@ steps:
     label: "asterius-image"
     command: |
       mkdir /tmp/asterius
-      mv .buildkite/* /tmp/asterius
+      mv * /tmp/asterius
       git checkout -f master
-      mv /tmp/asterius/* .buildkite
+      mv /tmp/asterius/* .
       rm -rf /tmp/asterius
 
       docker system prune --all --force
@@ -21,7 +21,7 @@ steps:
         --tag terrorjack/asterius:base \
         .
       docker build \
-        --build-arg jobs=3 \
+        --build-arg jobs=8 \
         --compress \
         --file stackage.Dockerfile \
         --label "gitrev=$(git rev-parse HEAD)" \
