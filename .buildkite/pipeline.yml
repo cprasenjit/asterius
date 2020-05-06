@@ -3,15 +3,17 @@ steps:
   - key: "asterius-dev-image"
     label: "asterius-dev-image"
     command: |
+      git checkout -f master
       docker pull debian:sid
       docker build \
         --compress \
         --file dev.Dockerfile \
+        --label "gitrev=$(git rev-parse HEAD)" \
         --network host \
         --no-cache \
         --squash \
         --tag terrorjack/asterius:dev \
-        https://github.com/tweag/asterius.git#master
+        .
       nix-shell \
         .buildkite/shell.nix \
         --command "docker save terrorjack/asterius:dev | zstd -T8 --ultra -22 -o /tmp/asterius-dev-image.tar.zst"
