@@ -1,0 +1,20 @@
+steps:
+
+  - key: "asterius-dev-image"
+    label: "asterius-dev-image"
+    command: |
+      docker pull debian:sid
+      docker build \
+        --compress \
+        --file dev.Dockerfile \
+        --network host \
+        --no-cache \
+        --squash \
+        --tag terrorjack/asterius:dev \
+        https://github.com/tweag/asterius/archive/master.tar.gz
+      nix-shell \
+        .buildkite/shell.nix \
+        --command "docker save terrorjack/asterius:dev | zstd -T8 --ultra -22 -o /tmp/asterius-dev-image.tar.zst"
+      buildkite-agent artifact upload /tmp/asterius-dev-image.tar.zst
+      rm /tmp/asterius-dev-image.tar.zst
+      docker system prune --all --force
