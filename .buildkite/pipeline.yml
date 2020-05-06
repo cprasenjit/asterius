@@ -3,7 +3,12 @@ steps:
   - key: "asterius-dev-image"
     label: "asterius-dev-image"
     command: |
+      export ASTERIUS_TMPDIR=$(mktemp -d)
+      mv .buildkite/* $ASTERIUS_TMPDIR
       git checkout -f master
+      mv ASTERIUS_TMPDIR/* .buildkite
+      unset ASTERIUS_TMPDIR
+
       docker pull debian:sid
       docker build \
         --compress \
