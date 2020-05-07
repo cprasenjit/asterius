@@ -21,9 +21,6 @@ steps:
         --squash \
         --tag terrorjack/asterius \
         .
-      nix-shell \
-        .buildkite/shell.nix \
-        --command "docker save terrorjack/asterius | zstd -T8 --ultra -22 -o /tmp/asterius-image.tar.zst"
-      buildkite-agent artifact upload /tmp/asterius-image.tar.zst
-      rm /tmp/asterius-image.tar.zst
+      docker run --rm terrorjack/asterius ahc-pkg list > /tmp/asterius-image.txt
+      buildkite-agent artifact upload /tmp/asterius-image.txt
       docker system prune --all --force
